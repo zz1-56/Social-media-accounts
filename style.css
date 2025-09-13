@@ -1,12 +1,11 @@
+/* ===== ملف CSS بعد التعديل: فقط responsiveness وتصغير المسافات ===== */
+
 body{
     background-color: hsl(0, 0%, 8%);
     font-family: 'Inter', sans-serif;
-    
 }
 
 .parent{
-    
-    
     background-color: hsl(0, 0%, 12%);
     width: fit-content;
     padding: 5%;
@@ -15,30 +14,41 @@ body{
     border-radius: 10px;
     margin-top: 1%;
 }
-.social_links{
 
-    /* width: fit-content; */
+.social_links{
     margin: auto;
-    text-align: center;    
-}  
+    text-align: center;
+    /* نستخدم flex عمودي للتحكم بالمسافة بين الأزرار */
+    display: flex;
+    flex-direction: column;
+    gap: 12px;           /* المسافة الرأسية بين الأزرار */
+    align-items: center; /* يوسّط الأزرار داخل الحاوية */
+}
+
+/* نخفي أي <br> موجود داخل .social_links (حتى لو بقي في الـ HTML) */
+.social_links br {
+    display: none;
+}
+
 a{
-    
-    
     text-decoration: none;
     font-weight: 700;
-    color:white;
+    color: white;
     display: block;
-    
-    /* border: 2px solid hsl(0, 0%, 20%); */
     background-color: hsl(0, 0%, 20%);
-    padding:15px 90px;
+    /* قلصنا الحشوة الأفقية بدل 90px الكبيرة */
+    padding: 12px 40px;
     border-radius: 10px;
-
+    box-sizing: border-box;
+    /* اعطينا عرض ثابت مناسب عشان الأزرار تكون بمقاس متناسق */
+    width: 260px;
+    margin: 0; /* تلافي أي مسافات إضافية */
 }
 a:hover{
     background-color: hsl(75, 94%, 57%);
     transition: 0.6s;
 }
+
 img{
     width: 40%;
     border-radius: 50%;
@@ -50,22 +60,56 @@ figure{
 }
 figcaption{
     color: white;
-    /* padding: 20px 15px; */
     text-transform: capitalize;
     font-weight: 700;
     font-size: xx-large;
     display: block;
-
 }
 figure p {
     color: hsl(75, 94%, 57%);
     text-transform: capitalize;
 }
-
 .about_me{
     color: white;
     margin-top: -1px;
     padding-bottom: 13px;
-    
+}
 
+/* ---------------- Responsiveness إضافي ---------------- */
+
+/* شاشة موبايل صغيرة */
+@media (max-width: 480px) {
+    .parent {
+        width: 90%;
+        padding: 4%;
+    }
+    img {
+        width: 50%;
+    }
+    /* على الموبايل نخلي الأزرار تأخذ نسبة من العرض */
+    .social_links a {
+        width: 90%;
+        padding: 12px 18px;
+    }
+}
+
+/* تابلت */
+@media (min-width: 768px) {
+    .parent {
+        max-width: 420px;
+    }
+    .social_links {
+        gap: 14px;
+    }
+    .social_links a {
+        width: 300px;
+        padding: 14px 40px;
+    }
+}
+
+/* ديسكتوب أكبر */
+@media (min-width: 1024px) {
+    .parent {
+        max-width: 600px;
+    }
 }
